@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "food-shop-22": {
+      "hosting": {
+        "food-shop": [
+          "food-shop-22"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "food-shop-22"
+  }
+}

@@ -1,0 +1,29 @@
+<div class="login-page">
+  <div class="form-container">
+  <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="submit()">
+    <img class="mb-4" src="/assets/FS-logos.jpeg" alt="logo">
+    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+    <mat-form-field>
+      <input matInput placeholder="Email address" formControlName="email" />
+      <mat-error *ngIf="email?.errors?.['required']">
+        Email is required
+      </mat-error>
+      <mat-error *ngIf="email?.errors?.['email']">
+        Email is invalid
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Password" type="password" formControlName="password" />
+      <mat-error *ngIf="password?.errors?.['required']">
+        Password is required
+      </mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Sign in</button>
+    <button mat-raised-button color="primary">Sign in with Google</button>
+    <button mat-raised-button color="accent">
+      <a routerLink="/sign-up">Sign up</a>
+    </button>
+  </form>
+  </div>
+</div>
