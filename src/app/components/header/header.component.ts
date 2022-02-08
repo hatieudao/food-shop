@@ -1,9 +1,10 @@
-import { UserService } from "./../../services/user.service";
+import { Router } from "@angular/router";
+import { UserService } from "shared/services/user.service";
 import { Observable } from "rxjs";
-import { FirebaseService } from "src/app/services/firebase.service";
+import { AuthService } from "shared/services/auth.service";
 import { Component, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
-import { UserInfor } from "src/app/models/user";
+import { UserInfor } from "shared/models/user";
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,10 @@ export class HeaderComponent implements OnInit{
   @ViewChild(MatMenuTrigger)
   trigger!: MatMenuTrigger;
   currentUser$ : Observable<UserInfor | null> =  this.userService.currentUserProfile$;
-  constructor(private userService: UserService, private authService: FirebaseService) {
+  constructor(
+    private userService: UserService, 
+    private authService: AuthService,
+    private router: Router) {
    }
 
   ngOnInit(): void {
@@ -26,6 +30,8 @@ export class HeaderComponent implements OnInit{
     this.trigger.openMenu();
   }
   logout(){
-    this.authService.logout();
+    this.authService
+    .logout()
+    .subscribe(() => this.router.navigate(['/login']));
   }
 }

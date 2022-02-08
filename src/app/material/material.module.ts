@@ -7,11 +7,19 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+
 const MaterialComponents = [
   MatTabsModule, MatFormFieldModule,
   MatIconModule, MatSelectModule,
   MatButtonModule, MatInputModule,
-  MatMenuModule,
+  MatMenuModule, MatListModule,
+  MatButtonToggleModule, MatGridListModule,
+  MatCardModule, MatTableModule,
 ]
 
 @NgModule({

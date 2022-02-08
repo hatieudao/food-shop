@@ -1,0 +1,15 @@
+<mat-card class="product-card">
+  <img mat-card-image [src]="product.photoUrl" >
+  <mat-card-content>
+    <h3>{{product.title}}</h3>
+    <h4>{{product.price | currency}}</h4>
+    <h5>{{product.category}}</h5>
+    <p>{{product.description}} </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary">Add</button>
+    <button mat-raised-button>
+      <a [routerLink]="['/product', product.id]">Details</a>
+    </button>
+  </mat-card-actions>
+</mat-card>

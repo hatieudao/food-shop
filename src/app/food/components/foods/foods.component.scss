@@ -1,0 +1,36 @@
+.food-page{
+  padding: 50px;
+  .food-list{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    app-food-item{
+      width: calc(95%/4);
+      flex-grow: 1;
+      margin-right: 10px;
+    }
+  }
+}
+$tablet-width: 768px; 
+$desktop-width: 1024px;
+
+@media screen and (max-width: $desktop-width) {
+  .food-page{
+    .food-list{
+      app-food-item{
+        width: calc(95%/3);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $tablet-width) {
+  .food-page{
+    .food-list{
+      app-food-item{
+        width: calc(95%/2);
+      }
+    }
+  }
+}

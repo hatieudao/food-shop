@@ -1,0 +1,13 @@
+<div class="product-page">
+  <mat-button-toggle-group #group="matButtonToggleGroup" [value]="filter" (change)="onChangeFilter(group.value)" >
+    <mat-button-toggle value="All" ngDefaultControl >All</mat-button-toggle>
+    <mat-button-toggle *ngFor="let c of (categories$ | async)" [value]="c.name" ngDefaultControl >
+      {{c.name}}
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+  <div class="product-list">
+    <ng-container  *ngFor="let item of products">
+      <app-product-item [product]="item" ></app-product-item>
+    </ng-container>
+  </div>
+</div>

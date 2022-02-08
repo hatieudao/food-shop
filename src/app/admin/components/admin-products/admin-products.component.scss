@@ -1,0 +1,40 @@
+.admin-product-page{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+  .product-table{
+    width: 1000px;
+    &__column-title{
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+  .mat-column{
+    &-description{
+      max-width: 300px;
+    }
+    &-actions{
+      button{
+        margin-right: 10px;
+      }
+    }
+  }
+  .mat-cell{
+    max-height: 50px !important;
+  }
+  img{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    box-shadow: 0 0 5px rgba($color: #000000, $alpha: .6);
+  }
+}
+.admin-product-actions{
+  width: 900px;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}

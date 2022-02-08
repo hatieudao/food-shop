@@ -1,8 +1,8 @@
-import { UserService } from "./../../services/user.service";
+import { AuthService } from "shared/services/auth.service";
+import { UserService } from "shared/services/user.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Component, OnInit } from '@angular/core';
 import { passwordsMatchValidator } from "./confirm-password.validators";
-import { FirebaseService } from "src/app/services/firebase.service";
 import { Router } from "@angular/router";
 import { HotToastService } from "@ngneat/hot-toast";
 import { switchMap } from "rxjs";
@@ -22,7 +22,7 @@ export class SignUpComponent implements OnInit {
   },
   {validators: passwordsMatchValidator()})
   constructor(
-    private authService: FirebaseService,
+    private authService: AuthService,
     private router: Router,
     private toast: HotToastService,
     private userService: UserService

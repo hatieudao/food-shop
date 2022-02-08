@@ -1,4 +1,4 @@
-import { FirebaseService } from "./../../services/firebase.service";
+import { AuthService } from "shared/services/auth.service";
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(
-    private authService: FirebaseService, 
+    private authService: AuthService, 
     private router: Router,
     private toast: HotToastService
     ) { }
@@ -33,6 +33,8 @@ export class LoginComponent implements OnInit {
     if(!this.loginForm.valid){
       return;
     }
+    const returnUrl = this.router.routerState.snapshot.root.queryParams?.['return'];
+    localStorage.setItem('returnUrl', returnUrl || '/');
     const { email, password } = this.loginForm.value;
     this.authService.login(email, password).pipe(
       this.toast.observe({
@@ -41,7 +43,8 @@ export class LoginComponent implements OnInit {
         error: "There was an error"
       })
     ).subscribe(()=>{
-      this.router.navigate(['/'])
-    })
+      const returnUrl = localStorage.getItem('returnUrl') || '/';
+      this.router.navigate([returnUrl]);
+    });
   }
 }

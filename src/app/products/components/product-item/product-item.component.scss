@@ -1,0 +1,17 @@
+.product-card{
+  width: 100%;
+  min-height: 400px;
+  height: 400px;
+  margin-right: 15px;
+  margin-top: 10px;
+  position: relative;
+  img{
+    width: 100%;
+    max-width: 350px;
+  }
+  mat-card-actions{
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+  }
+}

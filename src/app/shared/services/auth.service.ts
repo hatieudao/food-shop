@@ -6,7 +6,7 @@ import { from, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class FirebaseService {
+export class AuthService {
   isLogin : boolean = false;
   currentUser$: Observable<User | null> = authState(this.auth);
   constructor(private auth: Auth) { }
