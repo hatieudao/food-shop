@@ -2,7 +2,7 @@ import { Product } from "shared/models/product";
 import { UserService } from "./user.service";
 import { Injectable } from '@angular/core';
 import { Firestore, getFirestore } from "@angular/fire/firestore";
-import { collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore';
+import { collection, doc, getDocs, query, setDoc, updateDoc, where } from 'firebase/firestore';
 import { from, map, Observable, of } from "rxjs";
 
 @Injectable({
@@ -67,5 +67,9 @@ export class ProductService {
     const ref = doc(this.db, 'products', product.id);
     return from(setDoc(ref, product));
   
+  }
+  updateProduct(product: Product): Observable<void> {
+    const ref = doc(this.db, 'products', product.id);
+    return from(updateDoc(ref, { ...product }));
   }
 }

@@ -117,9 +117,21 @@
             "firebaseProject": "food-shop-22",
             "firebaseHostingSite": "food-shop-22"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "food-shop"
+  "defaultProject": "food-shop",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

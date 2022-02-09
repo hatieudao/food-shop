@@ -8,15 +8,15 @@ import { FoodService } from 'shared/services/food.service';
   styleUrls: ['./admin-foods.component.scss']
 })
 export class AdminFoodsComponent implements OnInit {
-  displayedColumns: string[] = ['photo', 'name', 'price', 'category','description', 'actions'];
+  displayedColumns: string[] = ['photo', 'name', 'price', 'category', 'description', 'actions'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   foods: Food[] = [];
-  constructor(private foodService: FoodService) { 
+  constructor(private foodService: FoodService) {
     this.foodService
       .getAllFood()
       .subscribe(data => {
         this.foods = data;
-      })
+      });
   }
 
   ngOnInit(): void {

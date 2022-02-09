@@ -1,6 +1,6 @@
 import { UserService } from "./user.service";
 import { Injectable } from '@angular/core';
-import { collection, doc, getDocs, getFirestore, query, setDoc, where } from "@angular/fire/firestore";
+import { collection, doc, getDocs, getFirestore, query, setDoc, updateDoc, where } from "@angular/fire/firestore";
 import { Food } from "shared/models/food";
 import { from, Observable } from "rxjs";
 
@@ -64,9 +64,12 @@ export class FoodService {
     if(!this.isAdmin){
       return from([]);
     }
-    const ref = doc(this.db, 'products', food.id);
+    const ref = doc(this.db, 'foods', food.id);
     return from(setDoc(ref, food));
-  
+  }
+  updateFood(food: Food): Observable<void> {
+    const ref = doc(this.db, 'products', food.id);
+    return from(updateDoc(ref, { ...food }));
   }
 }
 

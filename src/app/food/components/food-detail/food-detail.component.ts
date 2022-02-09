@@ -55,9 +55,6 @@ export class FoodDetailComponent implements OnInit {
   get description(){
     return this.foodDetailForm.get('description');
   }
-  get photoUrl(){
-    return this.foodDetailForm.get('photoUrl')?.value || 'https://i.ytimg.com/vi/P3FMSDEN8b4/maxresdefault.jpg';
-  }
   get photo(): string | undefined{
     return this.food?.images ? this.food?.images[0] : '';
   }

@@ -1,1 +1,34 @@
-<p>admin-new-food works!</p>
+<div class="new-food-page">
+  <div class="form-container">
+  <form  [formGroup]="newFoodForm" (ngSubmit)="submit()">
+    <h1>Add New food</h1>
+    <mat-form-field>
+      <input matInput placeholder="name" formControlName="name" />
+      <mat-error *ngIf="name?.errors?.['required']">
+        Name is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Price" formControlName="price" />
+      <mat-error *ngIf="price?.errors?.['required']">
+        Price is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Description" formControlName="description" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select formControlName="category">
+        <mat-option *ngFor="let c of (menu$ | async)" [value]="c.name">
+          {{c.name}}
+        </mat-option>
+      </mat-select>
+  </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Photo URL" formControlName="images" />
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Add</button>
+  </form>
+  </div>
+  <img [src]="photo" alt="preview">
+</div>

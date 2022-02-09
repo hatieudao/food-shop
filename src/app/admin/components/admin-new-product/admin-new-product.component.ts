@@ -33,27 +33,27 @@ export class AdminNewProductComponent implements OnInit {
     return this.newProductForm.get('title');
   }
 
-  get price(){
+  get price() {
     return this.newProductForm.get('price');
   }
-  get description(){
+  get description() {
     return this.newProductForm.get('description');
   }
-  get photoUrl(){
+  get photoUrl() {
     return this.newProductForm.get('photoUrl')?.value || 'https://i.ytimg.com/vi/P3FMSDEN8b4/maxresdefault.jpg';
   }
-  submit(){
+  submit() {
     const {title, price, description, photoUrl, category} = this.newProductForm.value;
     const id =  uuidv4();
     this.productService
-      .addProduct({id ,title, price, description, photoUrl, category})
+      .addProduct({id , title, price, description, photoUrl, category})
       .pipe(map(
         this.toast.observe({
           success: 'Add new product successfully',
           loading: 'Loading...',
           error: ({ message }) => `${message}`,
-        })) 
+        }))
       )
-      .subscribe(()=>this.route.navigate(['/product', `/${id}`]));
+      .subscribe(() => this.route.navigate(['/product', `${id}`]));
   }
 }

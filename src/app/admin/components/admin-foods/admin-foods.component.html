@@ -1,6 +1,10 @@
 <div class="admin-food-page">
+  <div class="admin-food-actions">
+    <button mat-raised-button >
+      <a routerLink="/admin/food/new">New</a>
+    </button>
+  </div>
   <table mat-table [dataSource]="foods" class="mat-elevation-z8 food-table">
-    
     <ng-container matColumnDef="photo">
       <th mat-header-cell *matHeaderCellDef>  </th>
       <td mat-cell *matCellDef="let element"> 
