@@ -1,0 +1,26 @@
+.order-popup{
+  &-table{
+    width: 1000px;
+  }
+  &__column-title{
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .mat-column{
+    width: 100px;
+    &-name{
+      width: 150px;
+    }
+  }
+  .mat-cell{
+    max-height: 50px !important;
+  }
+  
+}
+img{
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  box-shadow: 0 0 5px rgba($color: #000000, $alpha: .6);
+}

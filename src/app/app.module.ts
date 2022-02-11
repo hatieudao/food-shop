@@ -1,3 +1,4 @@
+import { OrdersModule } from "./orders/orders.module";
 import { ProductsModule } from "./products/products.module";
 import { AdminModule } from "./admin/admin.module";
 import { NgModule } from '@angular/core';
@@ -12,21 +13,15 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { HomeComponent } from './components/home/home.component';
-import { ProductsComponent } from './products/components/products/products.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { OrderSuccessComponent } from './components/order-success/order-success.component';
 import { LoginComponent } from './components/login/login.component';
-import { AdminProductsComponent } from './admin/components/admin-products/admin-products.component';
-import { AdminOrdersComponent } from './admin/components/admin-orders/admin-orders.component';
 import { CheckOutComponent } from './components/check-out/check-out.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { MyOrderComponent } from './components/my-order/my-order.component';
 import { ReactiveFormsModule } from "@angular/forms";
 import { HotToastModule } from '@ngneat/hot-toast';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { AdminNewProductComponent } from './admin/components/admin-new-product/admin-new-product.component';
-import { ProductDetailComponent } from './products/components/product-detail/product-detail.component';
-import { ProductItemComponent } from './products/components/product-item/product-item.component';
 import { SharedModule } from "shared/shared.module";
 import { HeaderComponent } from "./components/header/header.component";
 import { FooterComponent } from "./components/footer/footer.component";
@@ -57,6 +52,8 @@ import { FoodModule } from "./food/food.module";
     AdminModule,
     ProductsModule,
     FoodModule,
+    OrdersModule,
+    
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),

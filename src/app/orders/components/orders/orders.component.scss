@@ -1,0 +1,43 @@
+.orders-page{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+  .order-table{
+    width: 1000px;
+    &__column-title{
+      text-align: center;
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+  .mat-column{
+    &-createAt{
+      width: 200px;
+    }
+    &-foods{
+      text-align: center;
+    }
+    &-actions{
+      width: 150px;
+      button{
+        margin-left: 35px;
+        margin-top: 10px;
+      }
+    }
+  }
+  .mat-cell{
+    max-height: 50px !important;
+  }
+  img{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    box-shadow: 0 0 5px rgba($color: #000000, $alpha: .6);
+  }
+}
+.mat-sort-header-container{
+  justify-content: center;
+}

@@ -12,6 +12,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const MaterialComponents = [
   MatTabsModule, MatFormFieldModule,
@@ -20,6 +21,7 @@ const MaterialComponents = [
   MatMenuModule, MatListModule,
   MatButtonToggleModule, MatGridListModule,
   MatCardModule, MatTableModule,
+  MatDialogModule,
 ]
 
 @NgModule({

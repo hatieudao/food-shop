@@ -7,7 +7,7 @@ import { ProductService } from 'shared/services/product.service';
   templateUrl: './admin-products.component.html',
   styleUrls: ['./admin-products.component.scss']
 })
-export class AdminProductsComponent implements OnInit {
+export class AdminProductsComponent {
 
   displayedColumns: string[] = ['photo', 'title', 'price', 'category','description', 'actions'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
@@ -20,6 +20,4 @@ export class AdminProductsComponent implements OnInit {
           this.products = data;
         })
     }
-  ngOnInit(): void {
-  }
 }

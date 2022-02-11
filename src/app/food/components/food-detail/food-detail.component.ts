@@ -10,7 +10,7 @@ import { FoodService } from 'shared/services/food.service';
   templateUrl: './food-detail.component.html',
   styleUrls: ['./food-detail.component.scss']
 })
-export class FoodDetailComponent implements OnInit {
+export class FoodDetailComponent {
 
   foodDetailForm= new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -43,9 +43,6 @@ export class FoodDetailComponent implements OnInit {
       this.menu$ = this.foodService.menu$
   }
 
-  ngOnInit(): void {
-    
-  }
   get name(){
     return this.foodDetailForm.get('name');
   }

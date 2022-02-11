@@ -11,7 +11,7 @@ import { UserInfor } from "shared/models/user";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent{
 
   @ViewChild(MatMenuTrigger)
   trigger!: MatMenuTrigger;
@@ -21,10 +21,6 @@ export class HeaderComponent implements OnInit{
     private authService: AuthService,
     private router: Router) {
    }
-
-  ngOnInit(): void {
-  }
-  
 
   someMethod() {
     this.trigger.openMenu();

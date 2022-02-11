@@ -7,7 +7,7 @@ import { FoodService } from 'shared/services/food.service';
   templateUrl: './foods.component.html',
   styleUrls: ['./foods.component.scss']
 })
-export class FoodsComponent implements OnInit {
+export class FoodsComponent {
 
   
   foods: Food[] | null = [];
@@ -25,8 +25,6 @@ export class FoodsComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-  }
  onChangeFilter(val: string){
     this.filter = val;
     if(this.filter !== "All"){

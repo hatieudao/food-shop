@@ -3,15 +3,24 @@
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a routerLink="/"
-            routerLinkActive="selected"
-            [routerLinkActiveOptions]="{ exact: true }"
-            class="nav-link px-2 text-white">Home</a></li>
-          <li><a routerLink="/products"
-            routerLinkActive="selected"
-            class="nav-link px-2 text-white">Products</a></li>
-            <li><a routerLink="/foods"
-            routerLinkActive="selected"
-            class="nav-link px-2 text-white">Foods</a></li>
+              routerLinkActive="selected"
+              [routerLinkActiveOptions]="{ exact: true }"
+              class="nav-link px-2 text-white">Home</a></li>
+          <li>
+            <a routerLink="/products"
+              routerLinkActive="selected"
+              class="nav-link px-2 text-white">Products</a>
+          </li>
+          <li>
+              <a routerLink="/foods"
+                routerLinkActive="selected"
+                class="nav-link px-2 text-white">Foods</a>
+        </li>
+          <li>
+            <a routerLink="/orders"
+              routerLinkActive="selected"
+              class="nav-link px-2 text-white">Orders</a>
+          </li>
           <ng-container *ngIf="currentUser$ | async as user" >
           <li >
             <button mat-button class="dropdown" [matMenuTriggerFor]="menu">{{user.displayName || user.email}}</button>

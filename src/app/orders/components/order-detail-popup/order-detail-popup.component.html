@@ -1,0 +1,36 @@
+<div class="order-popup">
+  <h2>Create At : {{time.toDate()| date:'medium'}}</h2>
+  <h3>Total : {{total | currency}}</h3>
+  <mat-dialog-content class="mat-typography">
+    <table mat-table [dataSource]="orderFoods" matSort class="mat-elevation-z8 order-popup-table">
+      <ng-container matColumnDef="photo">
+        <th mat-header-cell class="order-popup-table__column-title" *matHeaderCellDef> Image </th>
+        <td mat-cell *matCellDef="let element">
+          <img [src]="element.images[0]" alt="foods selected">
+        </td>
+      </ng-container>
+
+      <ng-container  matColumnDef="name">
+        <th mat-header-cell class="order-popup-table__column-title" *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+      <ng-container  matColumnDef="price">
+        <th mat-header-cell class="order-popup-table__column-title" *matHeaderCellDef> Unit Price </th>
+        <td mat-cell *matCellDef="let element"> {{element.price | currency}} </td>
+      </ng-container>
+
+      <ng-container  matColumnDef="quantity">
+        <th mat-header-cell class="order-popup-table__column-title" *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+      </ng-container>
+
+      <ng-container  matColumnDef="total">
+        <th mat-header-cell class="order-popup-table__column-title" *matHeaderCellDef> Total </th>
+        <td mat-cell *matCellDef="let element"> {{element.price*element.quantity | currency}} </td>
+      </ng-container>
+      
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-dialog-content>
+</div>

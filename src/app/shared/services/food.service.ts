@@ -71,5 +71,19 @@ export class FoodService {
     const ref = doc(this.db, 'products', food.id);
     return from(updateDoc(ref, { ...food }));
   }
+  getFoodInstance(id: string): Food | any {
+    const colRef = collection(this.db, 'foods');
+    const q = query(colRef, where("id", "==", id));
+    return  getDocs(q)
+      .then(cols => {
+        let res:Food | null = null;
+        cols.forEach(col => {
+          const {id, name, price, description, images, category} = col.data();
+          res = {id, name, price, description, images, category };
+        })
+        return res;
+      })
+    
+  }
 }
 

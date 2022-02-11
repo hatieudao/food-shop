@@ -32,11 +32,6 @@ const routes: Routes = [{
     path: 'shopping-cart',
     component: ShoppingCartComponent,
   },{
-    path: 'my/orders',
-    component: MyOrderComponent,
-    canActivate: [AuthGuard]
-
-  },{
     path: 'check-out',
     component: CheckOutComponent,
     canActivate: [AuthGuard]
