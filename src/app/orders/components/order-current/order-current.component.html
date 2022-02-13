@@ -1,1 +1,24 @@
-<p>order-current works!</p>
+<div class="order-current">
+  <h1>Order Foods</h1>
+  <h3>Total: {{total | currency}}</h3>
+  <div class="food-order-item" *ngFor="let food of (foodsOrdered$ | async)">
+    <img [src]="food?.images[0]" alt="" srcset="">
+    <h3>{{food?.name}} ~ {{totalAType(food) | currency}}</h3>
+    <div class="food-order-item__quantity">
+      <button mat-raised-button color="primary" 
+      [disabled] = "food.quantity === 1"
+      (click)="decrement(food)" >
+      -
+    </button>
+      <input type="text" [value]="food.quantity">
+      <button mat-raised-button color="primary" (click)="increment(food)">+</button>
+      <button mat-raised-button class="btn-delete" color="warn" (click)="deleteFood(food)">X</button>
+    </div>
+  </div>
+  <button mat-raised-button
+    [disabled]="(foodsOrdered$ | async)?.length === 0"
+    (click)="finishOrder()"
+    color="primary">
+    Finish
+  </button>
+</div>

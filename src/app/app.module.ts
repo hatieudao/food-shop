@@ -53,7 +53,6 @@ import { FoodModule } from "./food/food.module";
     ProductsModule,
     FoodModule,
     OrdersModule,
-    
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),

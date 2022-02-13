@@ -1,15 +1,22 @@
 .food-page{
+  display: flex;
   padding: 50px;
-  .food-list{
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    app-food-item{
-      width: calc(95%/4);
-      flex-grow: 1;
-      margin-right: 10px;
+  &__option{
+    width: 65%;
+    .food-list{
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      app-food-item{
+        width: calc(95%/4);
+        flex-grow: 1;
+        margin-right: 10px;
+      }
     }
+  }
+  &__order{
+    width: 35%;
   }
 }
 $tablet-width: 768px; 

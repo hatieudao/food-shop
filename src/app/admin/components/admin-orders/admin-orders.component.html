@@ -1,1 +1,35 @@
-<p>admin-orders works!</p>
+<div class="orders-page">
+  <table mat-table [dataSource]="orders" class="mat-elevation-z8 order-table" matSort>
+    <ng-container matColumnDef="createAt">
+      <th mat-header-cell  class="order-table__column-title" *matHeaderCellDef mat-sort-header> Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.createAt.toDate()| date:'medium'}} </td>
+    </ng-container>
+
+    <ng-container  matColumnDef="foods">
+      <th mat-header-cell class="order-table__column-title" *matHeaderCellDef mat-sort-header> Foods </th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container >
+          <app-order-detail *ngFor="let item of (element.foods)" [foodItem]="item"></app-order-detail>
+        </ng-container>
+      </td>
+    </ng-container>
+    <ng-container  matColumnDef="actions">
+      <th mat-header-cell class="order-table__column-title" *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">  
+        <button mat-raised-button color="accent" 
+          (click)="requestPayment(element)"
+          [disabled]="element.status === 'paid'"
+        >
+          {{element.status}}
+        </button>
+        <button mat-raised-button color="primary" 
+          (click)="openDialog(element)"
+        >
+          View
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

@@ -7,7 +7,7 @@ import { FoodService } from 'shared/services/food.service';
   templateUrl: './admin-foods.component.html',
   styleUrls: ['./admin-foods.component.scss']
 })
-export class AdminFoodsComponent implements OnInit {
+export class AdminFoodsComponent  {
   displayedColumns: string[] = ['photo', 'name', 'price', 'category', 'description', 'actions'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
   foods: Food[] = [];
@@ -19,7 +19,5 @@ export class AdminFoodsComponent implements OnInit {
       });
   }
 
-  ngOnInit(): void {
-  }
 
 }

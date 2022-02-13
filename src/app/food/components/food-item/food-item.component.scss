@@ -1,14 +1,11 @@
 .food-card{
   width: 100%;
-  min-height: 500px;
-  height: 500px;
+  max-width: 300px;
+  min-height: 350px;
+  height: 350px;
   margin-right: 15px;
   margin-top: 10px;
   position: relative;
-  img{
-    width: 100%;
-    max-width: 350px;
-  }
   mat-card-actions{
     position: absolute;
     left: 20px;

@@ -16,13 +16,15 @@ export class OrderDetailPopupComponent  {
   columnsToDisplay: string[] = this.displayedColumns.slice();
   orderFoods:any[] = [];
   time;
+  total;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any){
       this.time = this.data.createAt;
-      this.orderFoods = this.data.foods
+      this.orderFoods = this.data.foods;
+      this.total = this.data.total;
     }
   
-  get total(){
-    return this.orderFoods.reduce((total, food) => total += food.price * food.quantity, 0)
-  }
+  // get total(){
+  //   return this.orderFoods.reduce((total, food) => total += food.price * food.quantity, 0)
+  // }
 }

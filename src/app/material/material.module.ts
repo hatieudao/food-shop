@@ -13,6 +13,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 const MaterialComponents = [
   MatTabsModule, MatFormFieldModule,
@@ -21,7 +23,8 @@ const MaterialComponents = [
   MatMenuModule, MatListModule,
   MatButtonToggleModule, MatGridListModule,
   MatCardModule, MatTableModule,
-  MatDialogModule,
+  MatDialogModule, MatSnackBarModule,
+  MatDatepickerModule,
 ]
 
 @NgModule({

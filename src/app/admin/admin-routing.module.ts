@@ -7,6 +7,8 @@ import { AdminOrdersComponent } from './components/admin-orders/admin-orders.com
 import { AdminProductsComponent } from './components/admin-products/admin-products.component';
 import { AdminNewFoodComponent } from './components/admin-new-food/admin-new-food.component';
 import { AdminFoodsComponent } from './components/admin-foods/admin-foods.component';
+import { AdminStatisticComponent } from './components/admin-statistic/admin-statistic.component';
+import { AdminUserComponent } from './components/admin-user/admin-user.component';
 
 const routes: Routes = [
   {
@@ -29,7 +31,15 @@ const routes: Routes = [
     path: 'admin/foods',
     component: AdminFoodsComponent,
     canActivate: [AuthGuard, AdminAuthGuard]
-  },
+  },{
+    path: 'admin/statistic',
+    component: AdminStatisticComponent,
+    canActivate: [AuthGuard, AdminAuthGuard]
+  },{
+    path: 'admin/users',
+    component: AdminUserComponent,
+    canActivate: [AuthGuard, AdminAuthGuard]
+  }
 ]
 
 @NgModule({

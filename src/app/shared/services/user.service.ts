@@ -16,6 +16,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class UserService {
+  public userId: string = '';
   constructor(private firestore: Firestore, private authService: AuthService ) {}
 
   get currentUserProfile$(): Observable<UserInfor | null> {
@@ -24,6 +25,7 @@ export class UserService {
         if (!user?.uid) {
           return of(null);
         }
+        this.userId = user.uid;
         const ref = doc(this.firestore, 'users', user?.uid);
         return docData(ref) as Observable<UserInfor>;
       })

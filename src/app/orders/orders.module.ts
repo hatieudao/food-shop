@@ -27,7 +27,9 @@ import { MatSortModule } from "@angular/material/sort";
     OrderRoutingModule,
   ],
   exports:[
-    OrderCurrentComponent
+    OrderCurrentComponent,
+    OrderDetailPopupComponent,
+    OrderDetailComponent
   ]
 })
 export class OrdersModule { }

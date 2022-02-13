@@ -1,3 +1,7 @@
+import { AdminAuthGuard } from "./guards/admin-auth.guard";
+import { CurrentFoodOrderService } from "./services/current-food-order.service";
+import { LocalStorageService } from "./services/local-storage.service";
+import { OrderService } from "./services/order.service";
 import { ProductService } from "shared/services/product.service";
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -19,7 +23,11 @@ import { FoodService } from "./services/food.service";
     UserService,
     ProductService,
     FoodService,
-    AuthGuard
+    OrderService,
+    LocalStorageService,
+    CurrentFoodOrderService,
+    AuthGuard,
+    AdminAuthGuard
   ]
 })
 export class SharedModule { }

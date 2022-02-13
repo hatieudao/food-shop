@@ -11,7 +11,7 @@ import { v4 as uuidv4 } from 'uuid';
   templateUrl: './admin-new-food.component.html',
   styleUrls: ['./admin-new-food.component.scss']
 })
-export class AdminNewFoodComponent implements OnInit {
+export class AdminNewFoodComponent {
 
    newFoodForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -29,8 +29,6 @@ export class AdminNewFoodComponent implements OnInit {
     this.menu$ = this.foodService.menu$;
   }
 
-  ngOnInit(): void {
-  }
   get name() {
     return this.newFoodForm.get('title');
   }

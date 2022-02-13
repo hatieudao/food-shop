@@ -1,3 +1,4 @@
+import { OrdersModule } from "./../orders/orders.module";
 import { MaterialModule } from "./../material/material.module";
 import { AdminRoutingModule } from "./admin-routing.module";
 import { NgModule } from '@angular/core';
@@ -9,7 +10,11 @@ import { AdminProductsComponent } from "./components/admin-products/admin-produc
 import { AdminNewFoodComponent } from './components/admin-new-food/admin-new-food.component';
 import { AdminFoodsComponent } from './components/admin-foods/admin-foods.component';
 import { HotToastModule } from "@ngneat/hot-toast";
-
+import { AdminUserComponent } from './components/admin-user/admin-user.component';
+import { AdminStatisticComponent } from './components/admin-statistic/admin-statistic.component';
+import { AdminOrderService } from "./services/admin-order.service";
+import { SharedModule } from "shared/shared.module";
+import { MatNativeDateModule } from "@angular/material/core";
 
 @NgModule({
   imports: [
@@ -19,6 +24,9 @@ import { HotToastModule } from "@ngneat/hot-toast";
     ReactiveFormsModule,
     MaterialModule,
     HotToastModule,
+    SharedModule,
+    OrdersModule,
+    MatNativeDateModule,
   ],
   declarations: [
     AdminProductsComponent,
@@ -26,6 +34,11 @@ import { HotToastModule } from "@ngneat/hot-toast";
     AdminNewProductComponent,
     AdminNewFoodComponent,
     AdminFoodsComponent,
+    AdminUserComponent,
+    AdminStatisticComponent,
   ],
+  providers:[
+    AdminOrderService
+  ]
 })
 export class AdminModule { }

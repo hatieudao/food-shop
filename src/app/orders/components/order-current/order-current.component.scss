@@ -1,0 +1,29 @@
+.order-current{
+    .food-order-item{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    img{
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+    }
+    &__quantity{
+      input{
+        width: 40px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      .mat-raised-button {
+        width: 30px!important;
+        min-width: unset!important;
+        font-size: 14px;
+        line-height: 28px;
+        padding: 3px;
+      }
+      .btn-delete{
+        margin-left: 10px;
+      }
+    }
+  }
+}

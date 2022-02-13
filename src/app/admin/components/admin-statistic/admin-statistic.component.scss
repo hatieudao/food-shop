@@ -1,0 +1,17 @@
+.statistic{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 10px;
+  &__chart{
+    width: 100%;
+    canvas{
+      width: 80%;
+      height: auto;
+    }
+  }
+  button{
+    margin-left:  10px;
+  }
+}

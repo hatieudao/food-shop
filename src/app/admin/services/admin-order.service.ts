@@ -1,25 +1,18 @@
 import { from, map, Observable } from "rxjs";
 import { Injectable } from '@angular/core';
 import { getFirestore } from '@angular/fire/firestore';
-import { UserService } from './user.service';
 import { collection, doc, getDocs, query, setDoc, updateDoc, where } from "firebase/firestore";
 import { Order } from "shared/models/orders";
-import { FoodService } from "./food.service";
+import { UserService } from "shared/services/user.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class OrderService {
+export class AdminOrderService {
 
-  
   private db:any;
-  private isAdmin:boolean | undefined= false;
-
-  constructor(
-    private userService: UserService,
-    ) {
+  constructor() {
     this.db = getFirestore();
-    this.userService.currentUserProfile$.subscribe(val => this.isAdmin = val?.isAdmin);
   }
 
   getAllOrders(): Observable<Order[] >{
@@ -28,7 +21,7 @@ export class OrderService {
       let res:Order[] = [];
       cols.forEach(col => {
         const {id , userId, createAt, foods, status, total} = col.data();
-        if(status === 'paid') return;
+        if(status === 'request') return;
         res?.push({id , userId, createAt, foods, status, total });
       })
       return res;
@@ -68,8 +61,8 @@ export class OrderService {
   }
   updateStatusOrder(order: Order): Observable<void> {
     const ref = doc(this.db, 'orders', order.id);
-    if(order.status !== 'pending') return new Observable<void>();
-    //const foods = order.foods.map(food => ({foodId: food.id, quantity: food.quantity}));
-    return from(updateDoc(ref, { ...order }));
+    if(order.status !== 'paid') return new Observable<void>();
+    const foods = order.foods.map(food => ({foodId: food.id, quantity: food.quantity}));
+    return from(updateDoc(ref, { ...order, foods }));
   }
 }

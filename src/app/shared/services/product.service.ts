@@ -2,8 +2,8 @@ import { Product } from "shared/models/product";
 import { UserService } from "./user.service";
 import { Injectable } from '@angular/core';
 import { Firestore, getFirestore } from "@angular/fire/firestore";
-import { collection, doc, getDocs, query, setDoc, updateDoc, where } from 'firebase/firestore';
-import { from, map, Observable, of } from "rxjs";
+import { collection, deleteDoc, doc, getDocs, query, setDoc, updateDoc, where } from 'firebase/firestore';
+import { BehaviorSubject, from, map, Observable, of } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +11,16 @@ import { from, map, Observable, of } from "rxjs";
 export class ProductService {
   private db:any;
   private isAdmin:boolean | undefined= false;
+  // private productSources :BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
+  // private products!: Product[];
+  // products$: Observable<Product[]> = this.productSources.asObservable();
   constructor(private userService: UserService) {
     this.db = getFirestore();
     this.userService.currentUserProfile$.subscribe(val => this.isAdmin = val?.isAdmin);
   }
-
+  
   get categories$(): Observable<any[] | null> {
     const colRef = collection(this.db, 'categories');
-    
     return from(getDocs(colRef).then(cols => {
       let res:any[] = [];
       cols.forEach(col => res.push(col.data()));
@@ -71,5 +73,12 @@ export class ProductService {
   updateProduct(product: Product): Observable<void> {
     const ref = doc(this.db, 'products', product.id);
     return from(updateDoc(ref, { ...product }));
+  }
+  deleteFood(product: Product): Observable<void>{
+    if(!this.isAdmin){
+      return from([]);
+    }
+    const ref = doc(this.db, 'products', product.id);
+    return from(deleteDoc(ref));
   }
 }

@@ -1,13 +1,18 @@
 <div class="food-page">
-  <mat-button-toggle-group #group="matButtonToggleGroup" [value]="filter" (change)="onChangeFilter(group.value)" >
-    <mat-button-toggle value="All" ngDefaultControl >All</mat-button-toggle>
-    <mat-button-toggle *ngFor="let c of ( menu$| async)" [value]="c.name" ngDefaultControl >
-      {{c.name}}
-    </mat-button-toggle>
-  </mat-button-toggle-group>
-  <div class="food-list">
-    <ng-container *ngFor="let item of foods">
-      <app-food-item [food]="item" ></app-food-item>
-    </ng-container>
+  <div class="food-page__option">
+    <mat-button-toggle-group #group="matButtonToggleGroup" [value]="filter" (change)="onChangeFilter(group.value)" >
+      <mat-button-toggle value="All" ngDefaultControl >All</mat-button-toggle>
+      <mat-button-toggle *ngFor="let c of ( menu$| async)" [value]="c.name" ngDefaultControl >
+        {{c.name}}
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+    <div class="food-list">
+      <ng-container *ngFor="let item of foods">
+        <app-food-item [food]="item" ></app-food-item>
+      </ng-container>
+    </div>
+  </div>
+  <div class="food-page__order">
+    <app-order-current></app-order-current>
   </div>
 </div>

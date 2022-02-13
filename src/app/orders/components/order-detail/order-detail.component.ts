@@ -9,6 +9,5 @@ import { FoodService } from 'shared/services/food.service';
 export class OrderDetailComponent  {
 
   @Input() foodItem!: any;
-  constructor() {
-  }
+  constructor() {}
 }
