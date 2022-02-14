@@ -1,3 +1,4 @@
+import { VerifyGuard } from "./guards/verify.guard";
 import { AdminAuthGuard } from "./guards/admin-auth.guard";
 import { CurrentFoodOrderService } from "./services/current-food-order.service";
 import { LocalStorageService } from "./services/local-storage.service";
@@ -27,7 +28,8 @@ import { FoodService } from "./services/food.service";
     LocalStorageService,
     CurrentFoodOrderService,
     AuthGuard,
-    AdminAuthGuard
+    AdminAuthGuard,
+    VerifyGuard
   ]
 })
 export class SharedModule { }

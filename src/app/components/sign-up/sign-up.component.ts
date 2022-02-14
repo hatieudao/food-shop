@@ -12,7 +12,7 @@ import { switchMap } from "rxjs";
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent  {
   formSignUp = new FormGroup({
     email: new FormControl('',[Validators.required, Validators.email]),
     name: new FormControl('', [Validators.required]),
@@ -28,8 +28,6 @@ export class SignUpComponent implements OnInit {
     private userService: UserService
   ) { }
 
-  ngOnInit(): void {
-  }
   get email(){
     return this.formSignUp.get('email');
   }
@@ -52,7 +50,7 @@ export class SignUpComponent implements OnInit {
       .signUp(email, password)
       .pipe(
         switchMap(({ user: { uid } }) =>
-          this.userService.addUser({ uid, email, displayName: name, isAdmin: false })
+          this.userService.addUser({ uid, email, displayName: name, isAdmin: false, verify: false })
         ),
         this.toast.observe({
           success: 'Congrats! You are all signed up',

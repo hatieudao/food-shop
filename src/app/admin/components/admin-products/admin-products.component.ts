@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { Product } from 'shared/models/product';
 import { ProductService } from 'shared/services/product.service';
@@ -14,8 +15,7 @@ export class AdminProductsComponent {
   columnsToDisplay: string[] = this.displayedColumns.slice();
   products$: Observable<Product[]> = new Observable<Product[]>();
   products!: Product[];
-  constructor(private productService: ProductService) { 
-    // this.products$ = this.productService.getAllProduct();
+  constructor(private productService: ProductService, private _snackBar: MatSnackBar,) { 
       this.productService
         .getAllProduct()
         .subscribe(data => {
@@ -23,6 +23,11 @@ export class AdminProductsComponent {
         })
     }
   deleteProduct(product: Product){
-    this.productService.deleteFood(product);
+    this.productService.deleteFood(product).subscribe(()=>{
+      this._snackBar.open('Deleted Product', 'OK', {
+        duration: 1000
+      })
+      window.location.reload();
+    });
   }
 }

@@ -31,18 +31,6 @@ export class AdminOrdersComponent {
     private _snackBar: MatSnackBar
   ) {
     this.orderService.getAllOrders()
-    // .pipe(
-    //   map(data => {
-    //     return data.map(order=>{
-    //       const foods:any[] = [];
-    //       order?.foods.forEach(async(food)=>{
-    //         const foodDetail = await this.foodService.getFoodInstance(food.foodId)
-    //         foods.push({...foodDetail, quantity: food.quantity});
-    //       })
-    //       return {...order, foods}
-    //     });
-    //   }),
-    // )
     .subscribe(data => {
       this.orders = new MatTableDataSource(data);
       this.orders.sort = this.sort;

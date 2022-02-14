@@ -1,3 +1,4 @@
+import { VerifyGuard } from "./../shared/guards/verify.guard";
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
@@ -10,11 +11,11 @@ const routes: Routes = [
   {
     path: 'orders',
     component: OrdersComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, VerifyGuard]
   },{
     path: 'order/:id',
     component: OrderDetailComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, VerifyGuard]
   },
 ]
 

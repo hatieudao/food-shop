@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { getFirestore } from '@angular/fire/firestore';
 import { collection, doc, getDocs, query, setDoc, updateDoc, where } from "firebase/firestore";
 import { Order } from "shared/models/orders";
-import { UserService } from "shared/services/user.service";
 
 @Injectable({
   providedIn: 'root'

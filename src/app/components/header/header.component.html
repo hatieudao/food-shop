@@ -16,11 +16,13 @@
                 routerLinkActive="selected"
                 class="nav-link px-2 text-white">Foods</a>
         </li>
-          <li>
-            <a routerLink="/orders"
-              routerLinkActive="selected"
-              class="nav-link px-2 text-white">Orders</a>
-          </li>
+          <ng-container *ngIf="currentUser$ | async as user">
+            <li>
+              <a routerLink="/orders"
+                routerLinkActive="selected"
+                class="nav-link px-2 text-white">Orders</a>
+            </li>
+          </ng-container>
           <ng-container *ngIf="currentUser$ | async as user" >
           <li >
             <button mat-button class="dropdown" [matMenuTriggerFor]="menu">{{user.displayName || user.email}}</button>
@@ -50,9 +52,6 @@
           </ng-container>
         </ul>
 
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-        </form>
         <div class="text-end" *ngIf="(currentUser$ | async) === null">
           <button type="button" class="btn btn-outline-light me-2">
             <a routerLink="/login">Login</a>

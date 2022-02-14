@@ -15,6 +15,7 @@ import { AdminStatisticComponent } from './components/admin-statistic/admin-stat
 import { AdminOrderService } from "./services/admin-order.service";
 import { SharedModule } from "shared/shared.module";
 import { MatNativeDateModule } from "@angular/material/core";
+import { AdminUserService } from "./services/admin-user.service";
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { MatNativeDateModule } from "@angular/material/core";
     AdminStatisticComponent,
   ],
   providers:[
-    AdminOrderService
+    AdminOrderService,
+    AdminUserService,
   ]
 })
 export class AdminModule { }

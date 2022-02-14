@@ -8,4 +8,5 @@ export interface UserInfor{
   address?: string;
   photoURL?: string;
   isAdmin: boolean;
+  verify: boolean;
 }
