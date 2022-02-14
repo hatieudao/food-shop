@@ -13,6 +13,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 export class FoodItemComponent {
 
   @Input() food!: Food;
+  @Input() canAdd!: boolean;
   constructor(
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,

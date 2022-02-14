@@ -8,11 +8,11 @@
     </mat-button-toggle-group>
     <div class="food-list">
       <ng-container *ngFor="let item of foods">
-        <app-food-item [food]="item" ></app-food-item>
+        <app-food-item [food]="item" [canAdd]="isLogin" ></app-food-item>
       </ng-container>
     </div>
   </div>
-  <div class="food-page__order">
+  <div class="food-page__order" *ngIf="isLogin" >
     <app-order-current></app-order-current>
   </div>
 </div>

@@ -10,7 +10,7 @@ import { FoodService } from 'shared/services/food.service';
   templateUrl: './admin-statistic.component.html',
   styleUrls: ['./admin-statistic.component.scss']
 })
-export class AdminStatisticComponent implements OnInit {
+export class AdminStatisticComponent {
   orders: any[] = [];
   filteredOrder: any[] = [];
   range = new FormGroup({
@@ -38,15 +38,13 @@ export class AdminStatisticComponent implements OnInit {
     this.chart= new Chart("myChart", {
     type: 'line',
     data: {
-        // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
         labels: data.map(d => d.date.toDate()),
         datasets: [{
             label: '# of Votes',
-            // data: [12, 19, 3, 5, 2, 3],
             data: data.map(d => d.total),
             fill: false,
             borderColor: 'rgb(75, 192, 192)',
-            borderWidth: 1
+            borderWidth: 2
         }]
     },
     options: {
@@ -57,9 +55,6 @@ export class AdminStatisticComponent implements OnInit {
         }
     }
     });
-  }
-  ngOnInit(): void {
-    console.log('DONE')
   }
   getTotal(foods:any){
     console.log(foods);

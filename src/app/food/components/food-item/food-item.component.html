@@ -6,7 +6,9 @@
     <h5>{{food?.category}}</h5>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="addToCurrentOrder()">Add</button>
+    <button mat-raised-button color="primary"
+     *ngIf="canAdd"
+    (click)="addToCurrentOrder()">Add</button>
     <button mat-raised-button (click)="openDialog()">
       Details
     </button>

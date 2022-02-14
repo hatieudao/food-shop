@@ -1,3 +1,4 @@
+import { ProductItemComponent } from "./../product-item/product-item.component";
 import { Observable } from "rxjs";
 import { ProductService } from "shared/services/product.service";
 import { Component, OnInit } from '@angular/core';
@@ -8,7 +9,7 @@ import { Product } from "shared/models/product";
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent {
 
   products : Product[] | null = null;
   filter: string = "All";
@@ -18,9 +19,6 @@ export class ProductsComponent implements OnInit {
       this.products = data;
     });
     this.categories$ = this.productService.categories$
-  }
-
-  ngOnInit(): void {
   }
 
   onChangeFilter(val: string){
@@ -38,4 +36,5 @@ export class ProductsComponent implements OnInit {
       });
     }
   }
+
 }

@@ -45,7 +45,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+    this.productDetailForm.disable();
   }
   get title(){
     return this.productDetailForm.get('title');
