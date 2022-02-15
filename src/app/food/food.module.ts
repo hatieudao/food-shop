@@ -25,6 +25,9 @@ import { FoodItemPopupComponent } from './components/food-item-popup/food-item-p
     ReactiveFormsModule,
     OrdersModule,
     FoodRoutingModule,
+  ],
+  exports: [
+    FoodItemPopupComponent
   ]
 })
 export class FoodModule { }

@@ -17,6 +17,7 @@ export class AdminUserComponent  {
   columnsToDisplay: string[] = this.displayedColumns.slice();
   
   users!: MatTableDataSource<UserInfor>;
+  users$;
   currentUser:any;
   @ViewChild(MatSort) sort!: MatSort;
   
@@ -24,9 +25,8 @@ export class AdminUserComponent  {
     private userService: AdminUserService, 
     private _snackBar: MatSnackBar,
     private authService: AuthService) { 
-    this.userService.getAllUsers()
-    .subscribe(data => {
-      console.log(data)
+    this.users$ = this.userService.users$;
+    this.users$.subscribe(data => {
       this.users = new MatTableDataSource(data);
       this.users.sort = this.sort;
     })

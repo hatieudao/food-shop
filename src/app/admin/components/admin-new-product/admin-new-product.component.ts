@@ -5,12 +5,13 @@ import { ProductService } from "shared/services/product.service";
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { v4 as uuidv4 } from 'uuid';
+import { AdminProductService } from "app/admin/services/admin-product.service";
 @Component({
   selector: 'app-admin-new-product',
   templateUrl: './admin-new-product.component.html',
   styleUrls: ['./admin-new-product.component.scss']
 })
-export class AdminNewProductComponent implements OnInit {
+export class AdminNewProductComponent {
   newProductForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
     price: new FormControl(10, [Validators.required]),
@@ -20,14 +21,11 @@ export class AdminNewProductComponent implements OnInit {
   })
   categories$;
   constructor(
-    private productService: ProductService,
+    private productService: AdminProductService,
     private toast: HotToastService,
     private route: Router
     ) {
     this.categories$ = this.productService.categories$
-  }
-
-  ngOnInit(): void {
   }
   get title(){
     return this.newProductForm.get('title');
@@ -54,6 +52,6 @@ export class AdminNewProductComponent implements OnInit {
           error: ({ message }) => `${message}`,
         }))
       )
-      .subscribe(() => this.route.navigate(['/product', `${id}`]));
+      .subscribe(() => this.route.navigate(['/admin/products']));
   }
 }

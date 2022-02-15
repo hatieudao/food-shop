@@ -14,27 +14,30 @@ export class ProductsComponent {
   products : Product[] | null = null;
   filter: string = "All";
   categories$;
+  products$;
   constructor(private productService: ProductService) {
-    this.productService.getAllProduct().subscribe(data => {
-      this.products = data;
-    });
+    // this.productService.getAllProduct().subscribe(data => {
+    //   this.products = data;
+    // });
+    this.products$ = this.productService.products$;
     this.categories$ = this.productService.categories$
   }
 
   onChangeFilter(val: string){
     this.filter = val;
-    if(this.filter !== "All"){
-      this.productService
-        .getProductByCategory(this.filter)
-        .subscribe(data => this.products = data)
-    }
-    else {
-      this.productService
-        .getAllProduct()
-        .subscribe(data => {
-        this.products = data;
-      });
-    }
+    this.productService.filterProducts(this.filter);
+    // if(this.filter !== "All"){
+    //   this.productService
+    //     .getProductByCategory(this.filter)
+    //     .subscribe(data => this.products = data)
+    // }
+    // else {
+    //   this.productService
+    //     .getAllProduct()
+    //     .subscribe(data => {
+    //     this.products = data;
+    //   });
+    // }
   }
 
 }

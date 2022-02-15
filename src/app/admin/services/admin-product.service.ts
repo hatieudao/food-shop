@@ -1,23 +1,21 @@
 import { Product } from "shared/models/product";
-import { UserService } from "./user.service";
 import { Injectable } from '@angular/core';
 import { Firestore, getFirestore } from "@angular/fire/firestore";
 import { collection, deleteDoc, doc, getDocs, query, setDoc, updateDoc, where } from 'firebase/firestore';
 import { BehaviorSubject, from, map, Observable, of } from "rxjs";
+import { UserService } from "shared/services/user.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
+export class AdminProductService {
   private db:any;
-  private isAdmin:boolean | undefined= false;
   private productSource :BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
   private products!: Product[];
   products$: Observable<Product[]> = this.productSource.asObservable();
   constructor(private userService: UserService) {
     this.db = getFirestore();
     this.updateData();
-    this.userService.currentUserProfile$.subscribe(val => this.isAdmin = val?.isAdmin);
   }
   updateSource(){
     this.productSource.next(this.products);
@@ -86,4 +84,18 @@ export class ProductService {
       return res;
     }))
   }
+  addProduct(product: Product): Observable<any>{
+    const ref = doc(this.db, 'products', product.id);
+    return from(setDoc(ref, product).then(()=>this.updateData()));
+  
+  }
+  updateProduct(product: Product): Observable<void> {
+    const ref = doc(this.db, 'products', product.id);
+    return from(updateDoc(ref, { ...product }).then(()=>this.updateData()));
+  }
+  deleteProduct(product: Product): Observable<void>{
+    const ref = doc(this.db, 'products', product.id);
+    return from(deleteDoc(ref).then(() => this.updateData()));
+  }
 }
+

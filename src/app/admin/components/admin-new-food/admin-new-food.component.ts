@@ -54,7 +54,7 @@ export class AdminNewFoodComponent {
           error: ({ message }) => `${message}`,
         }))
       )
-      .subscribe(() => this.route.navigate(['/food', `${id}`]));
+      .subscribe(() => this.route.navigate(['/admin/foods']));
   }
 }
 
