@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { getFirestore } from '@angular/fire/firestore';
-import { collection, doc, getDocs, setDoc, updateDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDocs, setDoc, updateDoc } from 'firebase/firestore';
 import { from, Observable, of, switchMap } from 'rxjs';
 import { UserInfor } from 'shared/models/user';
 
@@ -34,9 +34,15 @@ export class AdminUserService {
     const ref = doc(this.db, 'users', user.uid);
     return from(updateDoc(ref, { ...user }));
   }
+
   verifyUser(user: UserInfor): Observable<void> {
     const ref = doc(this.db, 'users', user.uid);
     if(user.verify) return new Observable<void>();
     return from(updateDoc(ref, { ...user, verify: true }));
+  }
+
+  deleteUser(user: UserInfor){
+    const ref = doc(this.db, 'users', user.uid);
+    return from(deleteDoc(ref));
   }
 }
