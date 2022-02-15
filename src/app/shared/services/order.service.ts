@@ -1,4 +1,4 @@
-import { from, map, Observable } from "rxjs";
+import { BehaviorSubject, from, map, Observable } from "rxjs";
 import { Injectable } from '@angular/core';
 import { getFirestore } from '@angular/fire/firestore';
 import { UserService } from './user.service';
@@ -14,14 +14,34 @@ export class OrderService {
   
   private db:any;
   private isAdmin:boolean | undefined= false;
-
+  private orderSource: BehaviorSubject<Order[]> = new BehaviorSubject<Order[]>([]);
+  private orders: Order[] = [];
+  orders$ = this.orderSource.asObservable();
   constructor(
     private userService: UserService,
     ) {
     this.db = getFirestore();
+    this.updateData();
     this.userService.currentUserProfile$.subscribe(val => this.isAdmin = val?.isAdmin);
   }
-
+  updateSource(){
+    this.orderSource.next(this.orders);
+  }
+  updateData(){
+    const colRef = collection(this.db, 'orders');
+    getDocs(colRef).then(cols => {
+      let res:Order[] = [];
+      cols.forEach(col => {
+        const {id , userId, createAt, foods, status, total} = col.data();
+        if(status === 'paid') return;
+        res?.push({id , userId, createAt, foods, status, total });
+      })
+      return res;
+    }).then(data => {
+      this.orders = data;
+      this.updateSource();
+    })
+  }
   getAllOrders(): Observable<Order[] >{
     const colRef = collection(this.db, 'orders');
     return from(getDocs(colRef).then(cols => {
@@ -64,12 +84,11 @@ export class OrderService {
   }
   updateOrder(order: Order): Observable<void> {
     const ref = doc(this.db, 'orders', order.id);
-    return from(updateDoc(ref, { ...order }));
+    return from(updateDoc(ref, { ...order }).then(()=> this.updateData()));
   }
   updateStatusOrder(order: Order): Observable<void> {
     const ref = doc(this.db, 'orders', order.id);
     if(order.status !== 'pending') return new Observable<void>();
-    //const foods = order.foods.map(food => ({foodId: food.id, quantity: food.quantity}));
-    return from(updateDoc(ref, { ...order }));
+    return from(updateDoc(ref, { ...order }).then(()=> this.updateData()));
   }
 }

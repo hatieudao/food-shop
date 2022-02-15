@@ -8,7 +8,6 @@
   .order-table{
     width: 1000px;
     &__column-title{
-      text-align: center;
       font-size: 16px;
       font-weight: 500;
     }
@@ -19,6 +18,9 @@
     }
     &-foods{
       text-align: center;
+    }
+    &-total{
+      width: 100px;
     }
     &-actions{
       width: 150px;

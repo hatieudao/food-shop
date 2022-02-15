@@ -24,6 +24,7 @@ export class AdminStatisticComponent {
   ) { 
     this.orderService.getAllOrders()
     .subscribe(data => {
+      data = data.filter(order => order.status === 'paid');
       this.orders = data;
       this.filteredOrder = data;
       this.draw();

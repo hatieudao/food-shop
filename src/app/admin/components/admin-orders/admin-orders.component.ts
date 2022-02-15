@@ -19,14 +19,13 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 })
 export class AdminOrdersComponent {
 
-  displayedColumns: string[] = ['createAt',  'foods', 'actions'];
+  displayedColumns: string[] = ['createAt', 'total', 'foods', 'actions'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
 
   orders!: MatTableDataSource<Order>;
   @ViewChild(MatSort) sort!: MatSort;
   constructor(
     private orderService: AdminOrderService,
-    private foodService: FoodService,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar
   ) {

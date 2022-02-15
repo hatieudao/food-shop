@@ -18,42 +18,32 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 })
 export class OrdersComponent {
 
-  displayedColumns: string[] = ['createAt',  'foods', 'actions'];
+  displayedColumns: string[] = ['createAt', 'total', 'foods', 'actions'];
   columnsToDisplay: string[] = this.displayedColumns.slice();
 
   orders!: MatTableDataSource<Order>;
-  filter: string = 'All';
+  orders$;
+  filter: string = 'all';
   @ViewChild(MatSort) sort!: MatSort;
   constructor(
     private orderService: OrderService,
-    private foodService: FoodService,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar
-  ) { 
-    this.orderService.getAllOrders()
-    // .pipe(
-    //   map(data => {
-    //     return data.map(order=>{
-    //       const foods:any[] = [];
-    //       order?.foods.forEach(async(food)=>{
-    //         const foodDetail = await this.foodService.getFoodInstance(food.foodId)
-    //         foods.push({...foodDetail, quantity: food.quantity});
-    //       })
-    //       return {...order, foods}
-    //     });
-    //   }),
-    // )
-    .subscribe(data => {
+  ) {
+    this.orders$ = this.orderService.orders$;
+    this.orders$.subscribe((data)=>{
       this.orders = new MatTableDataSource(data);
       this.orders.sort = this.sort;
     })
+    // this.orderService.getAllOrders()
+    // .subscribe(data => {
+    //   this.orders = new MatTableDataSource(data);
+    //   this.orders.sort = this.sort;
+    // })
   }
   
-  // getTotal(order:any){
-  //   return order.foods.reduce((total:any, food:any) => total += food.price * food.quantity, 0)
-  // }
-  requestPayment(order:any){
-    if(order.sataus === 'request') return;
+  requestPayment(order:Order){
+    if(order.status !== 'request') return;
     order.status = 'pending';
     this.orderService
       .updateStatusOrder({...order })

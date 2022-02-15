@@ -16,6 +16,7 @@ export class FoodsComponent {
   filter: string = 'All';
   menu$;
   isLogin:boolean  = false;
+  foods$;
   constructor(
     private foodService: FoodService,
     private authService: AuthService,
@@ -25,27 +26,29 @@ export class FoodsComponent {
       else this.isLogin = false;
     })
     this.menu$ = this.foodService.menu$;
-    this.foodService
-      .getAllFood()
-      .subscribe(data => {
-        this.foods = data;
-      })
+    this.foods$ = this.foodService.foods$;
+    // this.foodService
+    //   .getAllFood()
+    //   .subscribe(data => {
+    //     this.foods = data;
+    //   })
 
   }
 
  onChangeFilter(val: string){
     this.filter = val;
-    if(this.filter !== "All"){
-      this.foodService
-        .getFoodByCategory(this.filter)
-        .subscribe(data => this.foods = data)
-    }
-    else {
-      this.foodService
-        .getAllFood()
-        .subscribe(data => {
-        this.foods = data;
-      });
-    }
+    this.foodService.filterFoods(this.filter)
+    // if(this.filter !== "all"){
+    //   this.foodService
+    //     .getFoodByCategory(this.filter)
+    //     .subscribe(data => this.foods = data)
+    // }
+    // else {
+    //   this.foodService
+    //     .getAllFood()
+    //     .subscribe(data => {
+    //     this.foods = data;
+    //   });
+    // }
   }
 }

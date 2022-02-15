@@ -61,7 +61,6 @@ export class AdminOrderService {
   updateStatusOrder(order: Order): Observable<void> {
     const ref = doc(this.db, 'orders', order.id);
     if(order.status !== 'paid') return new Observable<void>();
-    const foods = order.foods.map(food => ({foodId: food.id, quantity: food.quantity}));
-    return from(updateDoc(ref, { ...order, foods }));
+    return from(updateDoc(ref, { ...order }));
   }
 }

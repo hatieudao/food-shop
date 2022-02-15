@@ -2,7 +2,7 @@ import { UserService } from "./user.service";
 import { Injectable } from '@angular/core';
 import { collection, doc, getDocs, getFirestore, query, setDoc, where } from "@angular/fire/firestore";
 import { Food } from "shared/models/food";
-import { from, Observable } from "rxjs";
+import { BehaviorSubject, from, Observable } from "rxjs";
 import { deleteDoc, updateDoc } from "firebase/firestore";
 
 @Injectable({
@@ -12,12 +12,38 @@ export class FoodService {
 
   private db:any;
   private isAdmin:boolean | undefined= false;
-
+  private foodSource:BehaviorSubject<Food[]> = new BehaviorSubject<Food[]>([]);
+  private foods : Food[] = [];
+  foods$ = this.foodSource.asObservable();
   constructor(private userService: UserService) {
     this.db = getFirestore();
     this.userService.currentUserProfile$.subscribe(val => this.isAdmin = val?.isAdmin);
+    this.updateData();
   }
-
+  updateSource(){
+    this.foodSource.next(this.foods);
+  }
+  updateData(){
+    const colRef = collection(this.db, 'foods');
+    getDocs(colRef).then(cols => {
+      let res:Food[] = [];
+      cols.forEach(col => {
+        const {id , name, price, description, images, category} = col.data();
+        res?.push({id , name, price, description, images, category });
+      })
+      return res;
+    }).then(data => {
+      this.foods = data;
+      this.updateSource();
+    })
+  }
+  filterFoods(type:string){
+    if(type === 'all'){
+      this.updateSource();
+      return;
+    }
+    this.foodSource.next(this.foods.filter(item => item.category === type));
+  }
   get menu$(): Observable<any[]> {
     const colRef = collection(this.db, 'menu');
     return from( getDocs(colRef).then(cols => {
@@ -73,8 +99,7 @@ export class FoodService {
       return from([]);
     }
     const ref = doc(this.db, 'foods', food.id);
-    console.log(ref)
-    return from(updateDoc(ref, { ...food }));
+    return from(updateDoc(ref, { ...food }).then(()=> this.updateData()));
   }
   deleteFood(food: Food): Observable<void>{
     if(!this.isAdmin){
