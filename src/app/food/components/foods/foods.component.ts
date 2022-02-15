@@ -27,28 +27,11 @@ export class FoodsComponent {
     })
     this.menu$ = this.foodService.menu$;
     this.foods$ = this.foodService.foods$;
-    // this.foodService
-    //   .getAllFood()
-    //   .subscribe(data => {
-    //     this.foods = data;
-    //   })
 
   }
 
  onChangeFilter(val: string){
     this.filter = val;
     this.foodService.filterFoods(this.filter)
-    // if(this.filter !== "all"){
-    //   this.foodService
-    //     .getFoodByCategory(this.filter)
-    //     .subscribe(data => this.foods = data)
-    // }
-    // else {
-    //   this.foodService
-    //     .getAllFood()
-    //     .subscribe(data => {
-    //     this.foods = data;
-    //   });
-    // }
   }
 }

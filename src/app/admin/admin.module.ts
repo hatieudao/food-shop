@@ -1,3 +1,4 @@
+import { FoodModule } from "./../food/food.module";
 import { OrdersModule } from "./../orders/orders.module";
 import { MaterialModule } from "./../material/material.module";
 import { AdminRoutingModule } from "./admin-routing.module";
@@ -30,6 +31,7 @@ import { MatSortModule } from "@angular/material/sort";
     OrdersModule,
     MatNativeDateModule,
     MatSortModule,
+    FoodModule
   ],
   declarations: [
     AdminProductsComponent,

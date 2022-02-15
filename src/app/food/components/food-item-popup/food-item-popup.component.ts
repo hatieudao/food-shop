@@ -22,14 +22,15 @@ export class FoodItemPopupComponent implements OnInit {
   })
   menu$;
   food: Food;
+  foodService;
   isAdmin:boolean | undefined = false;
   isEdit:boolean = false;
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: {food: Food},
+    @Inject(MAT_DIALOG_DATA) public data: {food: Food, foodService: any},
     private _snackBar: MatSnackBar,
-    private userService: UserService,
-    private foodService: FoodService) {
+    private userService: UserService) {
       this.food = this.data.food;
+      this.foodService = this.data.foodService;
       this.userService
         .currentUserProfile$
         .subscribe(user => this.isAdmin = user?.isAdmin)
@@ -73,7 +74,7 @@ export class FoodItemPopupComponent implements OnInit {
       images: [
         this.foodDetailForm.get('images')?.value
       ]
-    } as Food).subscribe((data)=>{
+    } as Food).subscribe(()=>{
       this._snackBar.open("Saved", "OK");
     });
   }
